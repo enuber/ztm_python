@@ -41,3 +41,11 @@ box = (100, 100, 400, 400)
 region = filtered_img.crop(box)
 
 region.save('cropped.png', 'png')
+
+
+# IMAGES PART 3
+
+astronaut = Image.open('./images/astro.jpg')
+# thumbnail will keep the aspect ratio up to max of 400
+astronaut.thumbnail((400, 400))
+astronaut.save('thumbnail.jpg')
