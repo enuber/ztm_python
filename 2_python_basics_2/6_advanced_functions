@@ -1,0 +1,56 @@
+# *args and **kwargs
+# arguments and keyword arguments
+
+# by using *args we are saying we can accept any number of positional arguments like the function call below
+# *args will create a tuple (a list that can't be modified)
+# by using this *args we are able to extend the functionality of the function as we can do something without knowing how many arguments will be passed in.
+def super_function(*args):
+  print(*args) # (1,2,3,4,5)
+  return sum(args)
+
+print(super_function(1,2,3,4,5))
+
+
+# by using **kwargs we can take in any number of keyword arguments and, in printing it out, we will get a dictionary of those keyword and values.
+def super_func(*args, **kwargs):
+  print(kwargs) # {'num1':5, 'num2':10}
+  total = 0
+  for items in kwargs.values():
+    total += items
+  return sum(args) + total
+
+print(super_func(1,2,3,4,5, num1=5, num2=10))
+
+# RULE: params, *args, default parameters, **kwargs
+# note: likely should never do this but this is what the above statement means for order of what goes where in function call. Should likely only being use up to two of these for any given function.
+
+def super_func(name, *args, i='hi', **kwargs):
+  print(kwargs) # {'num1':5, 'num2':10}
+  total = 0
+  for items in kwargs.values():
+    total += items
+  return sum(args) + total
+
+print(super_func('andy', 1,2,3,4,5, num1=5, num2=10))
+
+
+# EXERCISE
+
+def highest_even(li):
+  current_highest = 0
+  for num in li:
+    if (num % 2 == 0) and (current_highest < num):
+      current_highest = num
+  return current_highest
+
+print(highest_even([10, 2, 3, 4, 8, 11]))
+
+# Another way to do this - max gives you the max number and since we are passing in evens only this will give the max even number
+def highest_even(li):
+  evens = []
+  for item in li:
+    if item % 2 == 0:
+      evens.append(item)
+  return max(evens)
+
+print(highest_even([20, 2, 3, 4, 8, 11]))

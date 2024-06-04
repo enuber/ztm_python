@@ -1,0 +1,152 @@
+# functions
+# function should do one thing and should return something. Note - functions don't have to return something but it is good practice to follow those two rules.
+
+# def - short for define. give it a function name and () call it with the name of the function and () as below. Functions are not hoisted. so has to be defined before you call it.
+
+def say_hello():
+    print("hello")
+
+
+say_hello()
+
+# arguments vs parameters
+# paramaters are defined in the function
+
+
+def say_hello(name, emoji):
+    print(f'hello {name} {emoji}')
+
+
+# arguments are what is passed in to the function they are the values themsselves
+# Note: cntrl + cmd + space to bring up emoji picker
+# position matters...has to match the order in the function. So name first emoji second
+say_hello('Erik', '😎')
+
+# keyword arguments
+# this would work if you want them out of order, not normal practice but just so aware it exists.
+say_hello(emoji='emoji', name="erik")
+
+# default parameters
+# allows you to define values to fallback to if an argument isn't defined when the function is called
+
+
+def say_hello(name='Darth Vader', emoji='😈'):
+    print(f'hello {name} {emoji}')
+
+
+say_hello()  # hello Darth Vader 😈
+say_hello('Erik')  # hello Erik 😈
+
+# RETURN
+# can return one thing though that one thing can be a list, dict etc.
+# return exits the function so if you have code after the return it won't run. A return in a conditional statement is different...depends on order of code.
+
+
+def sum(num1, num2):
+    return num1 + num2
+
+
+total = sum(4, 5)
+print(total)  # 9 - by using return we get something back from the function
+
+# multiple functions within eachother
+
+
+def sum(num1, num2):
+    def sum2(num1, num2):
+        return num1 + num2
+    return sum2
+
+
+total = sum(10, 20)  # original sum function doesn't do anything with these
+print(total)  # returns the sum2 function
+
+print(total(20, 30))  # 50
+
+# another way
+
+
+def sum(num1, num2):
+    def sum2(num1, num2):
+        return num1 + num2
+    return sum2(num1, num2)
+
+
+total = sum(30, 40)
+# 70 because we are returning the funtion call with the num already in place
+print(total)
+
+
+# closure - can return a function where the scope of returned function has access to the scope of outer function even though called at a later time.
+
+def sum(num1, num2):
+    def sum2():
+        return num1 + num2
+    return sum2
+
+
+total = sum(50, 40)
+print(total())  # 90 can call this at a later time and, the num1, num2 are held as they were originally defined so would still get the 90
+
+
+# EXERCISE
+# make the checkDriverAge() function accept an argument of age, so that if you enter:
+# checkDriverAge(92);
+# it returns "Powering On. Enjoy the ride!"
+# also make it so that the default age is set to 0 if no argument is given.
+
+
+def checkDriverAge(age=0):
+    if int(age) < 18:
+        print("Sorry, you are too young to drive this car. Powering off")
+    elif int(age) > 18:
+        print("Powering On. Enjoy the ride!")
+    elif int(age) == 18:
+        print("Congratulations on your first year of driving. Enjoy the ride!")
+
+
+checkDriverAge(82)
+
+
+# Methods vs Functions
+# a method has to be owned by something. Who owns it...whatever is to the left of the dot. It is a built in objects that have methods like list, dict, set, tuples that have built in methods that are owned by an object. Can build your own methods.
+
+
+# DOC STRINGS - another way to comment code. It is called a doc string and, when you call the function and hover over the function name, you will get that info in the pop up window.
+
+def test(a):
+    '''
+    Info: this function tests and prints param a
+    '''
+    print(a)
+
+
+test('!!!!')
+
+# help(test) # this will give you the same info in the terminal. will tell you what the docstring says.
+
+# uses a dunder method to also give you the info in the doc string
+print(test.__doc__)
+
+
+# clean code
+
+def is_Even(num):
+    if num % 2 == 0:
+        return True
+    return False
+
+
+print(is_Even(50))  # True
+print(is_Even(51))  # False
+
+# cleaner way
+# the statement is already doing a check that will give T or F so just return that
+
+
+def is_Even(num):
+    return num % 2 == 0
+
+
+print(is_Even(50))  # True
+print(is_Even(51))  # False

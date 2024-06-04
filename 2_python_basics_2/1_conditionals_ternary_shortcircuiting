@@ -1,0 +1,61 @@
+# conditional logic
+# if/else statements
+
+is_old = True
+is_licensed = True
+
+# note the indentation, everything that is indented after the if runs when the statement is true. indentation becomes important because of this. 
+#  Note can chain as many elfif as you want
+
+if is_old:
+  print('you are old enough to drive!')
+elif is_licensed:
+  print('you have a license and can drive now')
+else: 
+  print('you aren\'t old enough to drive!')
+
+
+# and is a keyword meaning both need to be true
+if is_old and is_licensed:
+  print('you can drive')
+else: 
+  print('you can\'t drive')
+
+
+# Truthy / Falsy
+# there is some type conversion. The below will still give the you can drive statement. it is like doing bool('hello') and bool(5). It auto converts things to boolean
+# falsy '' 0 None 0.0 0j [] {} () set() range(0) False Decimal(0) Fraction(0, 1)
+
+print(bool('hello')) # True
+print(bool(5)) # True
+print(bool(0)) # False
+
+password = 'hello'
+username = 'enuber'
+
+if password and username:
+  print('can log in')
+else: 
+  print('something is wrong')
+
+
+#  Ternary operator same as if else if statements...shortcut
+#  also known as a conditional expression
+
+# condition_if_true if condition else condition_if_else
+
+is_friend = True
+
+can_message = "message allowed" if is_friend else "not allowed to message"
+print(can_message)
+
+
+# Short circuiting
+
+is_Friend = True
+is_User = True
+
+# with "and", if is_Friend is false, it short circuits as it doesn't matter what the rest is because as long as one is false it means the statement is false. 
+print(is_Friend and is_User)
+# with "or" keyword, if is_Friend is true, we get a short circuit as if the first statement is true it doesn't care about the rest because it's an or statement and if one is true then the whole statement is true. 
+print(is_Friend or is_User)

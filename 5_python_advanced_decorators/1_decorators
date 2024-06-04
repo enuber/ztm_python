@@ -1,0 +1,102 @@
+# DECORATORS
+# @<name> - what they look like
+# functions are first class citizens. they can be passed around like variables, argument..
+
+def hello():
+    print('hello')
+
+
+greet = hello()
+
+del hello
+
+# still works because greet points to the function location and it still exists just hello doesn't
+greet  # hello
+
+# print(hello()) # no longer exist so errors out
+
+
+def hello(func):
+    func()
+
+
+def greet2():
+    print('here')
+
+
+a = hello(greet2)
+
+# here - we are passing the greet function into hello that then calls the function just showing the power behind what you can do with functions.
+print(a)
+
+
+# it is because of stuff like above that decorators work. by adding a decorator to a function we can super charge it. We get extra functionality.
+
+
+# HIGHER ORDER FUNCTIONS HOC
+# ex map() reduce()...
+
+# a function that accepts another function
+def greet(func):
+    func()
+
+# or a function that returns a function
+
+
+def greet2():
+    def func():
+        return 5
+    return func
+
+
+# DECORATORS Part 2
+# a decorator is a function that wraps another function and changes it.
+
+
+def my_decorator(func):
+    def wrap_func():
+        print('*********')
+        func()
+        print('*********')
+    return wrap_func
+
+# because of the @ we know it's going to be a decorator
+# a decorator...as long as we follow the syntax of my_decorator where we accept a function, having a wrapper function, calling the function and returning the wrapping function
+
+
+@my_decorator
+def hello1():
+    print('hello line 69')
+
+
+@my_decorator
+def bye():
+    print('bye line 73')
+
+
+# yes, this still just gives us the print in hello but, because of the decorator we actually get more out of it, now we get ****** as well as just an example. The function is getting put into the decorator and something is happening that super boost the function.
+# same as doing my_decorator(hello1) but @my_decorator takes care of it for us. in the lessons on class that is what @classmethod and @staticmethod are doing as well. Taking the functions that they are above and passing them into a function called classmethod to do some behind the scenes stuff.
+hello1()
+bye()
+
+
+# Decorators part 3
+
+# we do args and kwargs so that everytime we add an argument or keyword we don't need to worry about going into the decorator and updating it.
+# this is the decorator pattern, it gives the decorator flexibility so we can pass as much as we want into it
+def my_decorator1(func):
+    def wrap_func(*args, **kwargs):
+        print('*********')
+        func(*args, **kwargs)
+        print('*********')
+    return wrap_func
+
+
+# can have as many arguments as you want now and will still work.
+@my_decorator1
+def hello2(greeting, emoji=":("):
+    print(greeting, emoji)
+
+
+hello2('hello from line 101', ';)')  # hello form line 100 ;)
+hello2('hi again from line 102')  # hi again frome line 101 :(

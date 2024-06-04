@@ -1,0 +1,89 @@
+# while loops
+# can chain an else statement. note that else will only run if there isn't a break statement in the while loop. 
+
+i = 0
+
+while i < 50:
+  print(i) # prints out 0 through 49
+  i += 1
+else:
+  print('done with all the work')
+
+# can use break to get out of the loop
+
+i = 0
+
+while i < 50:
+  print(i) # 0 will only print one time because of break statement.
+  break;
+
+# When to use a for or while
+# for loops are great to iterate over data
+# when loops if you don't know how long to go through a loop. 
+
+my_list = [1,2,3]
+
+for item in my_list:
+    print(item)
+
+i = 0
+while i < len(my_list):
+   print(my_list[i])
+   i += 1
+
+# more useful case for while loop
+
+while True:
+   response = input('say something: ')
+   if (response == 'bye'):
+      break
+   
+
+# break continue pass works in both for and while loops
+# break keyword 
+# continue keyword - will go back to the top of the loop without doing whatever follows. basically makes the next cycle happen, useful in conditional logic
+# pass - very rare to use. can work as a placeholder in code when working on writing out code. It basically says do nothing. If you are just coding something out and not sure what to do you can use pass so that if the loop gets called, it won't throw an error. But break would work just as well.
+
+
+# First GUI exercise
+
+# Display the image below to the right hand side where the 0 is going to be ' ', and the 1 is going to be '*'. This will reveal an image!
+# end in print allows you to do different things than just create a new line...string appended after the last value, default a newline.
+picture = [
+  [0,0,0,1,0,0,0],
+  [0,0,1,1,1,0,0],
+  [0,1,1,1,1,1,0],
+  [1,1,1,1,1,1,1],
+  [0,0,0,1,0,0,0],
+  [0,0,0,1,0,0,0]
+]
+
+# this makes the code more reuseable and, if there were multiple prints using fill or empty would allow us to change in one spot versus several.
+
+fill = '*'
+empty = ' '
+for row in picture:
+   for pixel in row:
+      if pixel:
+         print(fill, end='')
+      else:
+         print(empty, end='')
+   print('\n') 
+
+# Fundamentals
+# what is good code 
+# clean - our code follows a style, best practices
+# readability - ability to read code and understand what it is doing
+# predictability - 
+# DRY - don't repeat yourself
+
+# EXERCISE: check for dupes in a list:
+some_list = ['a', 'b', 'c', 'b', 'd', 'm', 'n', 'n']
+
+duplicates = []
+for value in some_list:
+    if some_list.count(value) > 1:
+        if value not in duplicates:
+            duplicates.append(value)
+
+print(duplicates)

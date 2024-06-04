@@ -1,0 +1,54 @@
+# and, or, >, < etc are all logical operators
+
+print(4 > 5) # False
+print(5 > 4) # True
+print(5 == 4) # False
+
+print(1 < 2 < 3 < 4) # True
+print(1 <= 2) # True
+
+print(0 != 0) # False != is "not equal"
+
+# not is the opposite
+print(not(True)) # False
+print(not(1 == 1)) # False because 1 == 1 is True and not True is False
+
+
+# exercise logical operators
+
+is_magician = False
+is_expert = True
+
+# check if magician and expert: print "you are a master edition"
+# check if magician but not expert: print "at least you're getting there"
+# if you're not a magician: print "you need magic"
+
+if is_magician and is_magician:
+  print("you are a master edition")
+elif is_magician and not is_expert:
+  print("at least you're getting there")
+elif not is_magician:
+  print('you need magic powers')
+
+
+# is vs ==
+
+# == tests for equality, 
+
+print(True == 1) # True - is true because type coersion 1 is True
+print('' == 1)  # False - '' is false and 1 is true
+print([] == 1)  # False - [] is false and 1 is true
+print(10 == 10.0) # True - 
+print([] == []) # True
+print('1' == 1) # False - string 1 is not the same as a number
+
+# is - a keyword in python, it checks the location in memory to see if the value is the same.
+
+print(True is True) # True
+print(True is 1) # False - 
+print('' is 1)  # False - 
+print([] is []) # False - becuase when a list is created it is in a new location in memory so there are two lists here that are empty but in diferent memory locations.
+print([] is 1)  # False -
+print(10 is 10.0) # False - 
+print([] is []) # False
+print('1' is 1) # False - string 1 is not the same as a number

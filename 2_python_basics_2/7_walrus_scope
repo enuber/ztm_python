@@ -1,0 +1,91 @@
+#  Walrus operator :=
+# assigns values to variables as part of a larger expression
+
+a = 'helloooooooooo'
+
+# we are saying that n will be the result of len(a) so that we can use it later without having to repeat len(a) and n will now store the value of len(a)
+if ((n := len(a)) > 10):
+    print(n)  # 14
+    print(f'to long {n} elements')  # to long 14 elements
+
+# same thing, will run while full expression is true but, n takes on the value of len(a)
+# this will print out 14, 13, 12, 11
+while ((n := len(a)) > 10):
+    print(n)
+    a = a[:-1]
+
+
+# SCOPE
+
+# What variables do I have access to?
+# python has functional scope
+
+total = 100  # global scope
+
+
+def some_func():
+    # print(total) # total is not defined so errors out
+    # total is local scope does not reassign total in global scope.
+    total = 1000
+    print(total)  # 1000 as defined in function
+
+
+some_func()
+print(total)  # 100 as in global scope and inside the function did not override global
+
+# Rules:
+# 1 - start with local scope
+# 2 - if nothing in local scope is there a parent local scope
+# 3 - global scope
+# 4 - built in python function example "sum()" realize you can define your own sum in local scope, parent scope and global scope before it then checks built in
+
+
+total = 0
+
+# global - keyword allows you to access the global scope when otherwise it wouldn't work. It wouldn't work in this case because by saying just total += 1 it will think total is local and it isn't already set with a starting point so can't add 1 to None. must be on two lines so that the function knows that it is looking globally to get total and then can work with it. If you put it on same line, an error will be thrown because it is invalid syntax as the interpreter doesn't understand. Not a good practice overall. Better way would be independency injection where we pass the argument into the function.
+
+
+def count():
+    global total
+    total += 1
+    return total
+
+
+print(count())  # 1
+
+# better
+
+
+def count(total):
+    total += 1
+    return total
+
+
+# notice that count(total) doesn't actually change the total globally
+print(count(total))  # 2 - because first count function properly increase count
+print(total)
+
+# 4 - the 1 from the first time and then we are counting three more times
+print(count(count(count(total))))
+
+
+# nonlocal - keyword used to refer to parent local. not referring to the global scope but to the parent level scope. So here in the "inner" function we are asking it to see X as what is defined in "outer" and, it makes that variable mutable
+# also not something should be used unless really needed. Should be going for more readable understandable code.
+
+def outer():
+    x = 'local'
+
+    def inner():
+        nonlocal x
+        print('inner', x)  # inner local
+        x = "nonlocal"
+        print('inner', x)  # inner nonlocal
+
+    inner()
+    # outer nonlocal - note that it changed the X to nonlocal the nonlocal keyword made X modifyable/mutable
+    print("outer", x)
+
+
+outer()
+
+'hello'.low
