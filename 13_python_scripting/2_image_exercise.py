@@ -1,3 +1,6 @@
+# after lecture note - OPENCV - powerful image library, also can be used with machine learning like for self driving cars.
+
+
 # JPG to PNG converter
 # will take first the name of the folder that exists with images in it. "images/"
 # second will take the name of the folder to put the images into "new/"
