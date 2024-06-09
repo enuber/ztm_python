@@ -1,0 +1,65 @@
+FROM BUILD A PORTFOLIO PART 8
+
+Python anywhere host our web files on a server for free
+
+https://www.pythonanywhere.com/
+
+create an account.
+
+when you load files, you don't need to include everything. for our example would load .csv, .py, static folder, template folder, and requirements.txt. And as python anywhere connects via git, you would load those files into github.
+
+setting up flask applications on pythonganywhere...link below
+
+https://help.pythonanywhere.com/pages/Flask/
+
+under CODE:
+
+sourc code, put folder name of site and it will create the change like /home/erik/portfolio just need to enter portfolio
+
+Setting up your virtualenv
+look in this on the link above and follow along
+
+Setting up the Web app using Manual configuration
+look in this as well and follow along
+
+gist of this one is that you copy the environment name you gave and go to the web tab in pythonanywhere and past just the environment name into the virtual environment box. It will do the full path itself.
+
+
+Then go to below area for PORTILIO PART 9
+
+
+ ++++++++++++++++++++++++++++++++
+
+NOTE for future projects requirements.txt
+
+this freeze caputres the packages installed in the current environment, which is our virtual environment. So we can run our app in different environments and machines.
+
+pip3 freeze > requirements.txt
+
+will give you a requirements.txt file that gives you a list of dependencies that can be used on another project.
+
+then can use 
+pip3 install -r requirements.txt 
+to install the requirements dependencies
+
+
+++++++++++++++++++++
+
+Portfolio part 9
+
+go to WSGI config file
+
+as using flask, can get rid of all text that doesn't include +++++ Flask+++++++
+
+uncomment the following 
+import sys
+path = '/home/erik/portfolio' # needs to be path to your project
+if path not in sys.path:
+  sys.path.append(path)
+
+# the from needs to be the file where we are serving our files from in server.py we do app = Flask(__name__) which says this is the app and how we know what file we want to put in the from
+from server.py import app as application
+
+then save 
+
+click on big green button at top of page to reload the page and the site is now live

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My website</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.png') }}"
+    />
+    <script src="static/script.js"></script>
+  </head>
+  <body>
+    I am a web master <br />
+    {{name}}<br />
+    {{post_id}}
+  </body>
+</html>
