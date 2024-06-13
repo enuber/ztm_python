@@ -1,0 +1,84 @@
+# https://elitedatascience.com/python-cheat-sheet
+
+import pandas as pd
+using jupyternotebooks
+
+within jupyternotebooks, pandas comes already with it installed.
+
+Can simply do
+
+
+
+# 1 - import the data
+
+# importing pandas first and calling it pd so we don't have to type the full word out reapeatedly
+
+pd.read_csv('data.csv')
+
+we do ...
+
+data_frame = pd.read_csv('data.csv')
+
+and the data_frame is what shows up underneath with all the data. so we can just refer to it as data_frame rather than have to call the full thing over and over.
+
+data_frame.shape  # gives us (18207, 89) (row, column)
+
+data_frame.describe()  # gives us statistical info in an organized chart
+
+# gives us an array of each individual player, something that numpy can work well with.
+data_frame.values
+
+
+# 2 - clean the data
+# kaggle gives a list of the columns in it so good to see what all is in the data.
+
+# tells us that we want specific columns found in the data_frame using the DataFrame() method
+df1 = pd.DataFrame(data_frame, columns=['Name', 'Wage', 'Value'])
+print(df1)
+
+# function was gotten from stack overflow, good use case of searching for something somene has already done
+
+
+def value_to_float(x):
+    if type(x) == float or type(x) == int:
+        return x
+    if 'K' in x:
+        if len(x) > 1:
+            return float(x.replace('K', '')) * 1000
+        return 1000.0
+    if 'M' in x:
+        if len(x) > 1:
+            return float(x.replace('M', '')) * 1000000
+        return 1000000.0
+    if 'B' in x:
+        return float(x.replace('B', '')) * 1000000000
+    return 0.0
+
+
+# using regex to remove the Euro site.
+wage = df1['Wage'].replace('[\€]', '', regex=True).apply(value_to_float)
+value = df1['Value'].replace('[\€]', '', regex=True).apply(value_to_float)
+
+# reassigning cleaned up numbers to wage and value so that we can the do math with them as they are numbers now.
+df1['Wage'] = wage
+df1['Value'] = value
+
+
+# using pandas built in sort to then sort the data
+df1.sort_values('difference', ascending=False)
+
+
+# now have a sorted list of information but would be good to visualize it. 
+# using matplotlib to do this. Very extensive library
+# going to use SEABORN which is buiolt using matplotlib as it's easy to use.
+
+seaborn also comes with jupyternotebooks, we just import it and ...
+
+# this will create a scatterplot graph super easily and quick.
+import seaborn as sns
+sns.set()
+
+graph = sns.scatterplot(x='Wage', y='Value', data=df1)
+graph
+
+# BOKEH is another library that allows interaction with visualization

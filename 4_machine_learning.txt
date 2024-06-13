@@ -1,0 +1,7 @@
+# 3 - split the data. training set and a test set. ex: 100 row file, we uses 80 rows for training set and the last 20 rows as the test set.
+
+# 4 - create a model. import an algorithm not really writing it ourselves. we choose who what type to use
+
+# 5 - check the output
+
+# 6 - improve. may give it extra input, or change the model
