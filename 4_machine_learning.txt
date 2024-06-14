@@ -1,7 +1,92 @@
+# going to use scikit-learn for iris data. 
+#sci-kit learn comes with jupyternotebooks on anaconda as well
+
 # 3 - split the data. training set and a test set. ex: 100 row file, we uses 80 rows for training set and the last 20 rows as the test set.
+
+this gets the data we want
+from sklearn.datasets import load_iris
+
+this holds the data in the variable iris
+iris = load_iris()
+
+X  - inputs we want to give to the machine learning model
+y - the target
+
+we want a function that takes an X (our data) and outputs a y which is our answer. In our case our target is 0, 1, 2... which represents each type of flower.
+
+X and y are standard for these
+
+in our case if we do type(X) we will get numpy.ndarray which is a multi dimensional array
+
+# splits arrays or matrices into random train and test subsets.
+https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html#train-test-split
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
+print(X_train.shape) #  (90, 4) rows/ columns
+print(X_test.shape) # (60, 4)
+
+
 
 # 4 - create a model. import an algorithm not really writing it ourselves. we choose who what type to use
 
+using this particular model. There are a lot of them 
+https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html#kneighborsclassifier
+from sklearn.neighbors import KNeighborsClassifier
+
+knn = KNeighborsClassifier(n_neighbors = 3)
+knn.fit(X_train, y_train)
+the y_pred is the answers that the machine came up with and we can compare to the answers in y_test to see if they are correct
+y_pred = knn.predict(X_test)
+
+
+
 # 5 - check the output
 
+from sklearn import metrics
+print(metrics.accuracy_score(y_test, y_pred)) #.9333333 so it's 93% accurate
+
+
+
+
 # 6 - improve. may give it extra input, or change the model
+
+improvements - can test for different amounts of training vs testing data. This is why more data is better.
+
+could change the number of nearest neighbors but, this makes different segments and, we have only three types of flowers so three seems like the best choice for nearest neighbors
+
+columns or features - if there were more of these, it gives more data to learn from. but this data set doesn't come with more.
+
+finally could change the type of algorithm to use
+
+
+
+# FROM PART 4
+can create our own samples to test. with what we know, the predictions of what these would be is roughly 93% accurate. We do not know for sure if they are correct because it's just random numbers rather than someone that knows what the data actually means.
+
+sample = [[3, 5, 4 , 2], [2,3,5,4]]
+predictions = knn.predict(sample)
+pred_species = [iris.target_names[p] for p in predictions]
+print('predictions', pred_species)
+
+
+
+# FROM PART 5
+the knn.fit() portion of the code can take a very long time if there are millions of rows of data. So if someone submits an image to the program you wouldn't want to run all those lines over and over.
+model persistance - next time we want to make a prediction, we want to save the model to a file and use that file for predictions
+
+from joblib import dump, load
+
+# knn is the we created and, we are giving it the file that we want it stored into. 
+joblib.dump(knn, 'mlbrain.joblib')
+
+now the model is stored in a file and can be used
+
+# load up the file and use it to predict
+model = joblib.load('mlbrain.joblib')
+model.predict(X_test)
+
+then when you want to train the model again, you create a new dump and use that updated file for users. 
+
+
+https://github.com/aneagoie/ML-Notes/blob/master/iris.ipynb
