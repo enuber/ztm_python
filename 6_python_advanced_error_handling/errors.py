@@ -59,7 +59,7 @@ while True:
         # can raise your own value errors this way as well. useful if creating own library or tool.
         raise ValueError('hey cut it out')
     except ZeroDivisionError:
-        print('please endter age higher than 0')
+        print('please enter age higher than 0')
     else:
         print('thank you')
         break
