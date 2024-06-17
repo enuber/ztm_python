@@ -28,6 +28,6 @@ while True:
     else:
         break
 
-list_to_use = range(1, number)
+list_to_use = range(1, number + 1)
 
 print([num for num in list_to_use if number % num == 0])
