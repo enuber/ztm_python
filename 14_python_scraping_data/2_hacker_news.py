@@ -2,7 +2,7 @@
 # scrapy - another framework to scrape websites.
 # beautiful soup - is a library so smaller than scrapy
 
-# pprint helsp with loo in console for printing something
+# pprint helps with loo in console for printing something
 import requests
 from bs4 import BeautifulSoup
 import pprint
