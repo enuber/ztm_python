@@ -6,6 +6,28 @@
 
 
 with open('20_data.txt', mode='r') as file:
-    data = file.read()
+    # data2 = list(file.readlines()) # note that this leave in the \n at the end of each line.
 
-print(data)
+    # doing it this way there is no \n at end of line.
+    data2 = []
+    line = file.readline()
+    while line:
+        line = line.strip()
+        data2.append(line)
+        line = file.readline()
+
+
+def count_categories(data):
+    categories = {}
+    for line in data:
+        li = line.split('/')
+        li.pop(0)
+        cat_name = li[1]
+        if cat_name in categories:
+            categories[cat_name] += 1
+        else:
+            categories[cat_name] = 1
+    return categories
+
+
+category_count = count_categories(data2)
