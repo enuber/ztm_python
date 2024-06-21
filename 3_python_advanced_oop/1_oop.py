@@ -15,7 +15,7 @@ obj1 = BigObject()
 
 print(type(obj1))  # __main__.BigObject
 
-# a class is the blueprint of what we want to create, the attributes, properties, methods. then we use that blueprint as the buildig block to make objects. We use the class by instantiting it which makes instances of it in objects. Above the class is BigObject. The instance is obj1 and we instantiate it by saying BigObject().
+# a class is the blueprint of what we want to create, the attributes, properties, methods. then we use that blueprint as the building block to make objects. We use the class by instantiting it which makes instances of it in objects. Above the class is BigObject. The instance is obj1 and we instantiate it by saying BigObject().
 
 
 # CREATING OUR OWN OBJECTS
